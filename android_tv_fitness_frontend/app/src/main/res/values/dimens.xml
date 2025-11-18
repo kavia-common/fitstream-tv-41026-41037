@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing scale -->
+    <dimen name="tv_space_xs">4dp</dimen>
+    <dimen name="tv_space_s">8dp</dimen>
+    <dimen name="tv_space_m">12dp</dimen>
+    <dimen name="tv_space_l">16dp</dimen>
+    <dimen name="tv_space_xl">20dp</dimen>
+    <dimen name="tv_space_2xl">24dp</dimen>
+    <dimen name="tv_space_3xl">32dp</dimen>
+    <dimen name="tv_space_4xl">40dp</dimen>
+    <dimen name="tv_space_5xl">48dp</dimen>
+    <dimen name="tv_space_6xl">64dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="tv_pad_m">12dp</dimen>
+    <dimen name="tv_pad_l">16dp</dimen>
+    <dimen name="tv_pad_xl">20dp</dimen>
+    <dimen name="tv_touch_min">64dp</dimen>
+</resources>

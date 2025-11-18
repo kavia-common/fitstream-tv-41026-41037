@@ -1,14 +1,18 @@
 package com.example.android_tv_fitness_frontend
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.commit
+import com.example.android_tv_fitness_frontend.nav.Navigation
 
 /**
  * PUBLIC_INTERFACE
  * MainActivity is the launcher activity for the Android TV app.
- * It sets a content view and attaches a minimal Leanback BrowseSupportFragment
- * so that the app does not show a blank screen on startup.
+ * It sets a content view and attaches the HomeFragment. Adds quick overlay
+ * buttons to navigate to Login and Preferences for demonstration.
  */
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +31,20 @@ class MainActivity : AppCompatActivity() {
                     HomeFragment.TAG
                 )
             }
+        }
+
+        // Wire overlay demo buttons
+        findViewById<ImageButton>(R.id.btn_go_login)?.apply {
+            isFocusable = true
+            isFocusableInTouchMode = true
+            visibility = View.VISIBLE
+            setOnClickListener { Navigation.toLogin(this@MainActivity) }
+        }
+        findViewById<ImageButton>(R.id.btn_go_prefs)?.apply {
+            isFocusable = true
+            isFocusableInTouchMode = true
+            visibility = View.VISIBLE
+            setOnClickListener { Navigation.toDietaryPreferences(this@MainActivity) }
         }
     }
 }

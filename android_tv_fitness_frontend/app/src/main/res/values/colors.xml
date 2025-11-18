@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- TV optimized colors -->
+    <!-- Dark canvas and surfaces -->
     <color name="tv_background">#000000</color>
-    <color name="tv_overlay">#CC000000</color>
+    <color name="tv_canvas_bg">#0C0C0E</color>
+    <color name="tv_surface_dark">#121315</color>
+    <color name="tv_surface_2">#1A1C1F</color>
+    <color name="tv_divider">#2A2E34</color>
+
+    <!-- Text -->
     <color name="tv_primary">#FFFFFF</color>
-    <color name="tv_secondary">#CCCCCC</color>
-    <color name="tv_accent">#2196F3</color>
+    <color name="tv_secondary">#B7BDC5</color>
+    <color name="tv_muted">#88919B</color>
+    <color name="tv_error">#F87171</color>
+
+    <!-- Accents -->
+    <color name="tv_accent">#34D399</color>
+    <color name="tv_accent_pressed">#2DB686</color>
+    <color name="tv_accent_gold">#B4873A</color>
+
+    <!-- Scrims -->
+    <color name="tv_overlay">#CC000000</color>
+    <color name="tv_scrim_80">#CC000000</color>
+
+    <!-- Buttons -->
     <color name="tv_button_focused">#FFFFFF</color>
     <color name="tv_button_normal">#80FFFFFF</color>
+
+    <!-- Titan light modal palette -->
+    <color name="tv_light_surface">#F7F7F8</color>
+    <color name="tv_light_text_primary">#111111</color>
+    <color name="tv_light_text_secondary">#444444</color>
+    <color name="tv_light_divider">#E5E7EB</color>
+
+    <!-- Gold tile variants -->
+    <color name="tv_tile_gold_10">#1AF2C981</color>
+    <color name="tv_tile_gold_40">#66B4873A</color>
 </resources>

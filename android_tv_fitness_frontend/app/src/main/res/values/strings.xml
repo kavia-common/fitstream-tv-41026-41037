@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">android_tv_fitness_frontend</string>
-    
-    <!-- Rating Screen Strings -->
+
+    <!-- Home -->
+    <string name="home_title">HOME</string>
+    <string name="home_row_featured">Featured</string>
+
+    <!-- Login -->
+    <string name="login_logo_desc">Polytracon Logo</string>
+    <string name="login_brand">POLYTRACON</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_sign_in">Sign In</string>
+    <string name="login_register">Register</string>
+    <string name="login_forgot">Forgot password?</string>
+    <string name="login_error_missing">Please enter both email and password.</string>
+    <string name="login_forgot_placeholder">Password reset is not implemented yet.</string>
+
+    <!-- Dietary Preferences -->
+    <string name="titan_brand">TITAN</string>
+    <string name="dietary_prefs_title">Dietary Preferences</string>
+    <string name="dietary_prefs_subtitle">Select Your Dietary Preferences &amp; Restrictions</string>
+    <string name="dietary_prefs_group_preferences">Preferences</string>
+    <string name="dietary_prefs_group_restrictions">Restrictions</string>
+    <string name="dietary_prefs_open_modal">View Gym Hours &amp; Map</string>
+
+    <!-- Map Modal -->
+    <string name="map_modal_title">Gym Hours and Directions</string>
+    <string name="map_modal_close">Close</string>
+    <string name="map_modal_start_nav">Start Navigation</string>
+    <string name="map_modal_start_nav_feedback">Launching navigation… (placeholder)</string>
+
+    <!-- Dev overlay -->
+    <string name="nav_to_login">Go to Login</string>
+    <string name="nav_to_prefs">Go to Preferences</string>
+
+    <!-- Rating Screen Strings (kept for future use) -->
     <string name="rating_title">Did you like it?</string>
     <string name="rating_message">Your vote helps us recommend more content like this.</string>
     <string name="rating_like">I like it</string>
     <string name="rating_love">I love it</string>
-    <string name="rating_dislike">I don\'t like it</string>
+    <string name="rating_dislike">I don’t like it</string>
     <string name="rating_close">Close</string>
     <string name="rating_countdown">Closing in %d seconds</string>
 </resources>

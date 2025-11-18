@@ -4,4 +4,32 @@
     android:id="@+id/fragment_container_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/tv_background"/>
+    android:background="@color/tv_background">
+
+    <!-- Developer overlay buttons for quick navigation -->
+    <LinearLayout
+        android:id="@+id/dev_overlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_go_login"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_button_transparent"
+            android:contentDescription="@string/nav_to_login"
+            android:src="@drawable/ic_login"/>
+
+        <ImageButton
+            android:id="@+id/btn_go_prefs"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_button_transparent"
+            android:contentDescription="@string/nav_to_prefs"
+            android:src="@drawable/ic_prefs"/>
+    </LinearLayout>
+
+</FrameLayout>

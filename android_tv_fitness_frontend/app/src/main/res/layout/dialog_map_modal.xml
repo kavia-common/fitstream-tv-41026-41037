@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/modal_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tv_scrim_80">
+
+    <LinearLayout
+        android:id="@+id/modal_card"
+        android:layout_width="1280dp"
+        android:layout_height="640dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_modal_light"
+        android:padding="@dimen/tv_space_2xl"
+        android:orientation="horizontal">
+
+        <!-- Left (40%) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/hours_title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/map_modal_title"
+                    android:textColor="@color/tv_light_text_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <ImageButton
+                    android:id="@+id/btn_close_modal"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_button_light"
+                    android:contentDescription="@string/map_modal_close"
+                    android:src="@drawable/ic_close"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/tv_space_l"
+                android:background="@color/tv_light_divider"/>
+
+            <!-- Simple hours list -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/tv_space_l"
+                android:orientation="vertical">
+
+                <include layout="@layout/row_hour_item"/>
+                <include layout="@layout/row_hour_item"/>
+                <include layout="@layout/row_hour_item"/>
+                <include layout="@layout/row_hour_item"/>
+                <include layout="@layout/row_hour_item"/>
+                <include layout="@layout/row_hour_item"/>
+                <include layout="@layout/row_hour_item"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tv_space_l"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_start_nav"
+                    style="@style/TvGoldPrimaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:text="@string/map_modal_start_nav"/>
+
+                <Space
+                    android:layout_width="@dimen/tv_space_l"
+                    android:layout_height="1dp"/>
+
+                <Button
+                    android:id="@+id/btn_close_footer"
+                    style="@style/TvSecondaryButtonLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:text="@string/map_modal_close"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Right (60%) Map -->
+        <FrameLayout
+            android:id="@+id/map_region"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="@drawable/bg_map_mock"
+            android:foregroundGravity="center" />
+
+    </LinearLayout>
+
+</FrameLayout>

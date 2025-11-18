@@ -4,17 +4,13 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.leanback.app.BrowseSupportFragment
-import androidx.leanback.widget.ArrayObjectAdapter
-import androidx.leanback.widget.HeaderItem
-import androidx.leanback.widget.ImageCardView
-import androidx.leanback.widget.ListRow
-import androidx.leanback.widget.ListRowPresenter
-import androidx.leanback.widget.Presenter
+import androidx.leanback.widget.*
+import com.example.android_tv_fitness_frontend.nav.Navigation
 
 /**
  * PUBLIC_INTERFACE
- * HomeFragment shows a minimal Leanback BrowseSupportFragment with a single row of cards.
- * This guarantees a visible, focusable UI on Android TV instead of a blank screen.
+ * HomeFragment shows a Leanback BrowseSupportFragment with a row of cards.
+ * Adds a "Preferences" hint card to navigate to Dietary Preferences.
  */
 class HomeFragment : BrowseSupportFragment() {
 
@@ -35,7 +31,7 @@ class HomeFragment : BrowseSupportFragment() {
     }
 
     private fun setupUi() {
-        title = getString(R.string.app_name)
+        title = getString(R.string.home_title)
         brandColor = ContextCompat.getColor(requireContext(), R.color.tv_accent)
         headersState = HEADERS_DISABLED
         isHeadersTransitionOnBackEnabled = false
@@ -67,7 +63,9 @@ class HomeFragment : BrowseSupportFragment() {
                 )
                 card.mainImage = drawable
                 card.setOnClickListener {
-                    // No-op placeholder; can navigate to details in future.
+                    if (content.title == "Dietary Preferences") {
+                        Navigation.toDietaryPreferences(requireActivity())
+                    }
                 }
             }
 
@@ -80,10 +78,10 @@ class HomeFragment : BrowseSupportFragment() {
             add(SampleCard("Daily Workout", "10-min warmup"))
             add(SampleCard("Guided Yoga", "15-min stretch"))
             add(SampleCard("HIIT Blast", "20-min burn"))
-            add(SampleCard("Core Strength", "12-min abs"))
+            add(SampleCard("Dietary Preferences", "Select preferences & restrictions"))
         }
 
-        val header = HeaderItem(0, "Featured")
+        val header = HeaderItem(0, getString(R.string.home_row_featured))
         rowsAdapter.add(ListRow(header, listRowAdapter))
     }
 
