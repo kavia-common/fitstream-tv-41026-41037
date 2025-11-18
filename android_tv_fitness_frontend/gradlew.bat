@@ -1,35 +1,36 @@
 @ECHO OFF
-REM Gradle startup script for Windows
+REM -----------------------------------------------------------------------------
+REM Gradle start up script for Windows
+REM This is a minimal wrapper to bootstrap Gradle in CI.
+REM -----------------------------------------------------------------------------
 
-SET DIR=%~dp0
-SET APP_HOME=%DIR%
+SETLOCAL
 
-SET WRAPPER_JAR=%APP_HOME%gradle\wrapper\gradle-wrapper.jar
+SET APP_HOME=%~dp0
 
-IF EXIST "%WRAPPER_JAR%" (
-    REM Use Gradle wrapper jar
-) ELSE (
-    ECHO Gradle wrapper JAR not found at %WRAPPER_JAR%
-    ECHO Attempting to run system gradle if available...
-    WHERE gradle >NUL 2>&1
-    IF %ERRORLEVEL%==0 (
-        gradle %*
-        EXIT /B %ERRORLEVEL%
-    ) ELSE (
-        ECHO Error: Neither gradle wrapper JAR nor system gradle found.
-        ECHO Please add gradle/wrapper files or install gradle.
-        EXIT /B 127
-    )
+IF NOT "%JAVA_HOME%"=="" (
+  SET JAVA_EXE=%JAVA_HOME%\bin\java.exe
+  IF EXIST "%JAVA_EXE%" GOTO javaFound
+  ECHO ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
+  EXIT /B 1
 )
 
-REM Use JAVA_HOME if set
-IF DEFINED JAVA_HOME (
-  SET "JAVACMD=%JAVA_HOME%\bin\java.exe"
-) ELSE (
-  SET "JAVACMD=java.exe"
+SET JAVA_EXE=java.exe
+
+:javaFound
+
+SET WRAPPER_JAR=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+SET WRAPPER_PROPERTIES=%APP_HOME%\gradle\wrapper\gradle-wrapper.properties
+
+IF NOT EXIST "%WRAPPER_PROPERTIES%" (
+  ECHO gradle-wrapper.properties not found at %WRAPPER_PROPERTIES% 1>&2
+  EXIT /B 1
 )
 
-SET WRAPPER_MAIN_CLASS=org.gradle.wrapper.GradleWrapperMain
+IF NOT EXIST "%WRAPPER_JAR%" (
+  ECHO gradle-wrapper.jar missing; CI requires it committed. 1>&2
+  EXIT /B 1
+)
 
-"%JAVACMD%" -classpath "%WRAPPER_JAR%" %WRAPPER_MAIN_CLASS% %*
-EXIT /B %ERRORLEVEL%
+"%JAVA_EXE%" -jar "%WRAPPER_JAR%" %*
+ENDLOCAL
