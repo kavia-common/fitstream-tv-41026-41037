@@ -1,12 +1,16 @@
-# Gradle files
+# Gradle
 .gradle/
 build/
 **/build/
+local.properties
 
 # Android Studio
 .idea/
 *.iml
-local.properties
+
+# Keystore files
+*.jks
+*.keystore
 
 # Misc
-.DS_Store
+.cxx/

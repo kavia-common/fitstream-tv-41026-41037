@@ -1,14 +1,4 @@
 plugins {
-    // Keep minimal to avoid plugin downloads if AGP is not required for CI smoke checks
-    id 'base'
-}
-
-version = '0.1.0'
-
-tasks.register('check') {
-    group = 'verification'
-    description = 'Minimal check task for CI to succeed.'
-    doLast {
-        println "CI check: android_tv_fitness_frontend build skeleton OK"
-    }
+    id 'com.android.application' version '8.2.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
 }

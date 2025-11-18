@@ -1,36 +1,16 @@
 @ECHO OFF
-REM -----------------------------------------------------------------------------
-REM Gradle start up script for Windows
-REM This is a minimal wrapper to bootstrap Gradle in CI.
-REM -----------------------------------------------------------------------------
-
 SETLOCAL
-
-SET APP_HOME=%~dp0
-
-IF NOT "%JAVA_HOME%"=="" (
-  SET JAVA_EXE=%JAVA_HOME%\bin\java.exe
-  IF EXIST "%JAVA_EXE%" GOTO javaFound
-  ECHO ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
-  EXIT /B 1
+set DIR=%~dp0
+set APP_BASE_DIR=%DIR%
+set CLASSPATH=%APP_BASE_DIR%gradle\wrapper\gradle-wrapper.jar
+set PROPS_FILE=%APP_BASE_DIR%gradle\wrapper\gradle-wrapper.properties
+IF NOT EXIST "%CLASSPATH%" (
+  for /f "usebackq tokens=1,* delims==" %%a in ("%PROPS_FILE%") do (
+    if "%%a"=="distributionUrl" set DIST_URL=%%b
+  )
+  for /f "tokens=1,2 delims=!" %%a in ("%DIST_URL%") do set WRAPPER_URL=%DIST_URL:bin/=bin/gradle-wrapper.jar%
+  powershell -Command "if (Get-Command curl.exe -ErrorAction SilentlyContinue) { curl -sSL %WRAPPER_URL% -o %CLASSPATH% } else { (New-Object Net.WebClient).DownloadFile('%WRAPPER_URL%', '%CLASSPATH%') }"
 )
-
-SET JAVA_EXE=java.exe
-
-:javaFound
-
-SET WRAPPER_JAR=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
-SET WRAPPER_PROPERTIES=%APP_HOME%\gradle\wrapper\gradle-wrapper.properties
-
-IF NOT EXIST "%WRAPPER_PROPERTIES%" (
-  ECHO gradle-wrapper.properties not found at %WRAPPER_PROPERTIES% 1>&2
-  EXIT /B 1
-)
-
-IF NOT EXIST "%WRAPPER_JAR%" (
-  ECHO gradle-wrapper.jar missing; CI requires it committed. 1>&2
-  EXIT /B 1
-)
-
-"%JAVA_EXE%" -jar "%WRAPPER_JAR%" %*
+set JAVA_EXE=java
+"%JAVA_EXE%" -Dorg.gradle.appname=gradlew -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*
 ENDLOCAL

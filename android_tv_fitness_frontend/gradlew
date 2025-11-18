@@ -1,62 +1,27 @@
 #!/usr/bin/env sh
-
-# -----------------------------------------------------------------------------
-# Gradle start up script for UN*X
-# This file is a simplified wrapper to bootstrap Gradle in CI environments.
-# It downloads and uses the Gradle wrapper as configured in gradle/wrapper/gradle-wrapper.properties
-# -----------------------------------------------------------------------------
-
-APP_HOME=$(cd "$(dirname "$0")"; pwd)
-
-# Add default JVM options here if needed
-DEFAULT_JVM_OPTS=""
-
-# Resolve Java executable
+##############################################################################
+##
+## Gradle start up script for UN*X
+##
+##############################################################################
+# Attempt to locate JAVA
 if [ -n "$JAVA_HOME" ] ; then
-    JAVA_EXE="$JAVA_HOME/bin/java"
-    if [ ! -x "$JAVA_EXE" ] ; then
-        echo "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME" >&2
-        exit 1
-    fi
+    JAVACMD="$JAVA_HOME/bin/java"
 else
-    JAVA_EXE="java"
+    JAVACMD="java"
 fi
-
-# Setup the wrapper jar and properties
-WRAPPER_JAR="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
-WRAPPER_PROPERTIES="$APP_HOME/gradle/wrapper/gradle-wrapper.properties"
-
-# Ensure properties exist
-if [ ! -f "$WRAPPER_PROPERTIES" ]; then
-  echo "gradle-wrapper.properties not found at $WRAPPER_PROPERTIES" >&2
-  echo "Please commit gradle/wrapper/gradle-wrapper.properties" >&2
-  exit 1
-fi
-
-# Download wrapper jar if missing using curl or wget
-if [ ! -f "$WRAPPER_JAR" ]; then
-  # Extract distribution URL from properties
-  DIST_URL=$(grep "^distributionUrl=" "$WRAPPER_PROPERTIES" | sed 's/distributionUrl=//')
-  if [ -z "$DIST_URL" ]; then
-    echo "distributionUrl not set in $WRAPPER_PROPERTIES" >&2
-    exit 1
-  fi
-  # Create directories
-  mkdir -p "$(dirname "$WRAPPER_JAR")"
-  # Try to download the wrapper jar from services.gradle.org if available, else fallback to distribution
-  # Note: Normally the jar is committed; this fallback may not work in restricted CI.
-  FALLBACK_JAR_URL="https://services.gradle.org/distributions/gradle-wrapper-8.7.jar"
-  echo "gradle-wrapper.jar missing, attempting to download (best-effort)..." >&2
+APP_BASE_DIR=$(dirname "$0")
+CLASSPATH="$APP_BASE_DIR/gradle/wrapper/gradle-wrapper.jar"
+# If wrapper JAR missing, try to download it using distributionUrl from properties
+PROPS_FILE="$APP_BASE_DIR/gradle/wrapper/gradle-wrapper.properties"
+if [ ! -f "$CLASSPATH" ] && [ -f "$PROPS_FILE" ]; then
+  DIST_URL=$(grep distributionUrl "$PROPS_FILE" | sed -e 's/.*=//')
+  WRAPPER_URL="${DIST_URL%/*}/gradle-wrapper.jar"
+  mkdir -p "$APP_BASE_DIR/gradle/wrapper"
   if command -v curl >/dev/null 2>&1; then
-    curl -fsSL "$FALLBACK_JAR_URL" -o "$WRAPPER_JAR" || true
+    curl -fsSL "$WRAPPER_URL" -o "$CLASSPATH"
   elif command -v wget >/dev/null 2>&1; then
-    wget -q "$FALLBACK_JAR_URL" -O "$WRAPPER_JAR" || true
-  fi
-  if [ ! -f "$WRAPPER_JAR" ]; then
-    echo "Failed to obtain gradle-wrapper.jar. Please commit it to the repo." >&2
-    exit 1
+    wget -q "$WRAPPER_URL" -O "$CLASSPATH"
   fi
 fi
-
-# Execute Gradle Wrapper
-exec "$JAVA_EXE" $DEFAULT_JVM_OPTS -jar "$WRAPPER_JAR" "$@"
+exec "$JAVACMD" -Dorg.gradle.appname=gradlew -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
