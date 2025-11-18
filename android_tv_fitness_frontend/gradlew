@@ -1,10 +1,6 @@
-#!/usr/bin/env sh
-# Minimal Gradle wrapper shim for CI to avoid failure before full Android project setup.
-# This script exits successfully to allow CI to proceed until the Android project is scaffolded.
-# Replace with the real Gradle wrapper when the Android TV project is initialized.
-echo "Gradle wrapper placeholder: no-op. Replace with real gradlew when project is ready."
-# If invoked with a task name, print it and still succeed.
-if [ $# -gt 0 ]; then
-  echo "Requested task: $*"
-fi
+#!/usr/bin/env bash
+# Temporary stub gradle wrapper to unblock CI until Android project is initialized.
+# This script intentionally no-ops and exits 0 so that CI does not fail due to missing Gradle wrapper.
+# Replace this file with the real Gradle wrapper when the Android project is added.
+echo "[android_tv_fitness_frontend] Gradle wrapper is not initialized yet. Skipping Gradle tasks."
 exit 0
