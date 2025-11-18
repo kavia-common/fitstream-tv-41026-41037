@@ -2,6 +2,7 @@ package com.example.android_tv_fitness_frontend
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.*
@@ -26,6 +27,7 @@ class HomeFragment : BrowseSupportFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.i(TAG, "onActivityCreated: setting up UI and rows")
         setupUi()
         setupRows()
     }
@@ -83,6 +85,7 @@ class HomeFragment : BrowseSupportFragment() {
 
         val header = HeaderItem(0, getString(R.string.home_row_featured))
         rowsAdapter.add(ListRow(header, listRowAdapter))
+        Log.i(TAG, "setupRows: adapter set with ${listRowAdapter.size()} items")
     }
 
     private data class SampleCard(val title: String, val subtitle: String)

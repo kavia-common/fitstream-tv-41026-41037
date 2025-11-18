@@ -5,6 +5,8 @@
         <item name="android:windowBackground">@color/tv_background</item>
         <item name="android:colorPrimary">@color/tv_accent</item>
         <item name="android:colorAccent">@color/tv_accent</item>
+        <!-- Ensure non-translucent main window to avoid blank/transparent screens -->
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <!-- Primary filled button for dark background -->
