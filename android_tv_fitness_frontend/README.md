@@ -1,39 +1,19 @@
 # Android TV Fitness Frontend
 
-This directory is intended for the Android TV app frontend. The current CI error:
-```
-bash: line 1: ./gradlew: No such file or directory
-```
-indicates that the Gradle wrapper is missing from this project. The backend changes are unrelated to this error.
+A minimal Android TV app using Leanback to avoid a blank screen on launch. The app launches into a BrowseSupportFragment showing a simple "Featured" row of cards, ensuring the preview renders visible content immediately.
 
-To initialize the Android project locally and add the Gradle wrapper:
+What was fixed:
+- MainActivity inflates a layout and attaches HomeFragment (Leanback) so startup is not blank.
+- AndroidManifest uses a TV-appropriate theme (Theme.Leanback), sets banner and icon, and declares the LEANBACK_LAUNCHER category.
+- Added a minimal HomeFragment with a BrowseSupportFragment and sample cards.
+- Gradle configuration consolidated to build.gradle.kts (removed duplicate Groovy build file).
+- Min SDK set to 26 and dependencies updated (Leanback, Fragment KTX, etc.).
 
-1) Create the Android project structure (if not yet created) using Android Studio or `gradle init`:
-   - Recommended: Use Android Studio to create a new Android TV project (Empty Activity or TV Activity).
-   - Ensure the project is placed at:
-     fitstream-tv-41026-41037/android_tv_fitness_frontend
+Build locally (CI-friendly):
+- From repository root, run:
+  - sh fitstream-tv-41026-41037/ci-run-android-gradle.sh :app:assembleDebug
 
-2) Generate/ensure the Gradle wrapper is committed:
-   - If using Gradle directly:
-     ```
-     gradle wrapper
-     ```
-     This will create:
-     - ./gradlew
-     - ./gradlew.bat
-     - ./gradle/wrapper/gradle-wrapper.jar
-     - ./gradle/wrapper/gradle-wrapper.properties
-
-3) CI Requirements:
-   - CI expects to run `./gradlew` from this directory.
-   - Make sure the wrapper files are present and executable (chmod +x gradlew).
-   - Include a settings.gradle, build.gradle (or build.gradle.kts) and module-level build files (app/build.gradle).
-
-4) If you intend to disable mobile build temporarily:
-   - Adjust CI configuration to skip the frontend container until the Android project is fully bootstrapped.
-
-Note:
-- Do not commit secrets or keystores.
-- For reproducible builds, lock Gradle and Android Gradle Plugin versions in gradle-wrapper.properties and build files.
-
-Once the Android TV project is added and the wrapper is present, the CI “./gradlew” error will be resolved.
+Notes:
+- Java 17 is required (AGP 8.x).
+- If your CI environment restricts network egress and gradle-wrapper.jar cannot be fetched, commit the jar into gradle/wrapper.
+- The HomeFragment is a placeholder; replace with actual TV UI (e.g., recommendations, workouts, categories) as you build features.
