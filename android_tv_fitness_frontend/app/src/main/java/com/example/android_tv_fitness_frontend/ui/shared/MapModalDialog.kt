@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
+
 import androidx.fragment.app.DialogFragment
 import com.example.android_tv_fitness_frontend.R
 
@@ -73,11 +73,11 @@ class MapModalDialog : DialogFragment() {
             if (hasFocus) {
                 v.scaleX = 1.03f
                 v.scaleY = 1.03f
-                ViewCompat.setForeground(v, ring)
+                v.foreground = ring
             } else {
                 v.scaleX = 1.0f
                 v.scaleY = 1.0f
-                ViewCompat.setForeground(v, null)
+                v.foreground = null
             }
         }
     }

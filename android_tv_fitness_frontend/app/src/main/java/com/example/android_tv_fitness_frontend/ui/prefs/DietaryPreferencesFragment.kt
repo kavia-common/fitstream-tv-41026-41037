@@ -5,7 +5,7 @@ import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
+
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -99,12 +99,12 @@ class DietaryPreferencesFragment : Fragment() {
             if (hasFocus) {
                 v.scaleX = 1.03f
                 v.scaleY = 1.03f
-                ViewCompat.setForeground(v, ring)
+                v.foreground = ring
                 v.setPadding(resources.getDimensionPixelSize(R.dimen.tv_pad_l))
             } else {
                 v.scaleX = 1.0f
                 v.scaleY = 1.0f
-                ViewCompat.setForeground(v, null)
+                v.foreground = null
             }
         }
     }

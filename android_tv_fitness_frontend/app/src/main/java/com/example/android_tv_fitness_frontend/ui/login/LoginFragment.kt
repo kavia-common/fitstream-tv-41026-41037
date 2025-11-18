@@ -11,7 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
+
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import com.example.android_tv_fitness_frontend.R
@@ -116,7 +116,7 @@ class LoginFragment : Fragment() {
 
     private fun applyFocusOutline(view: View) {
         val ring = ContextCompat.getDrawable(requireContext(), R.drawable.tv_focus_ring)
-        ViewCompat.setBackground(view, ViewCompat.getBackground(view))
+        
         view.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 v.scaleX = 1.03f
