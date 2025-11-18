@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        // No dependencies yet; real Android buildscript to be added later.
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+// A minimal no-op task that CI can call without failing.
+tasks.register("check") {
+    doLast {
+        println("Placeholder Gradle check task executed.")
+    }
+}

@@ -1,0 +1,9 @@
+plugins {
+    id 'base'
+}
+
+tasks.register("assemble") {
+    doLast {
+        println("Placeholder app assemble task executed.")
+    }
+}
