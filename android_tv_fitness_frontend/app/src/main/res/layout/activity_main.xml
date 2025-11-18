@@ -6,31 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/tv_background">
 
-    <!-- Temporary visible debug banner to confirm activity render path -->
-    <TextView
-        android:id="@+id/debug_banner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|top"
-        android:layout_margin="12dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:text="DEBUG: MainActivity content set"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:background="#AA66FF66"
-        android:elevation="8dp" />
-
-    <!-- Developer overlay buttons for quick navigation -->
+    <!-- Developer overlay buttons for quick navigation (hidden by default) -->
     <LinearLayout
         android:id="@+id/dev_overlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|top"
         android:layout_margin="16dp"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <ImageButton

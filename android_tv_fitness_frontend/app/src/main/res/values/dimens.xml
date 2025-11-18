@@ -17,4 +17,9 @@
     <dimen name="tv_pad_l">16dp</dimen>
     <dimen name="tv_pad_xl">20dp</dimen>
     <dimen name="tv_touch_min">64dp</dimen>
+
+    <!-- Components (added for precise TV layout) -->
+    <dimen name="tv_chip_width">240dp</dimen>
+    <dimen name="tv_chip_height">64dp</dimen>
+    <dimen name="tv_grid_gap">24dp</dimen>
 </resources>

@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-
 import androidx.fragment.app.DialogFragment
 import com.example.android_tv_fitness_frontend.R
 
@@ -55,6 +54,15 @@ class MapModalDialog : DialogFragment() {
             v.isFocusableInTouchMode = true
             applyFocusRing(v)
         }
+
+        // D-pad ordering: close <-> map (left/right), footer buttons next to each other
+        close.nextFocusRightId = R.id.map_region
+        mapRegion.nextFocusLeftId = R.id.btn_close_modal
+        startNav.nextFocusRightId = R.id.btn_close_footer
+        closeFooter.nextFocusLeftId = R.id.btn_start_nav
+
+        // Initial focus on close as per notes
+        root.post { close.requestFocus() }
 
         close.setOnClickListener { dismissAllowingStateLoss() }
         closeFooter.setOnClickListener { dismissAllowingStateLoss() }

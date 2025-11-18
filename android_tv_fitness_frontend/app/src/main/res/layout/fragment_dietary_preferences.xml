@@ -80,18 +80,14 @@
                 android:textStyle="bold"
                 android:text="@string/dietary_prefs_group_preferences"/>
 
+            <!-- Grid container (vertical stack of rows; rows are added programmatically) -->
             <LinearLayout
                 android:id="@+id/grid_prefs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginTop="@dimen/tv_space_l"
-                android:divider="?android:dividerVertical"
-                android:showDividers="none"
-                android:gravity="start">
-
-                <!-- Chips will be injected dynamically; use wrap children with margins via item backgrounds -->
-            </LinearLayout>
+                android:gravity="start" />
 
             <TextView
                 android:id="@+id/header_restrict"
@@ -103,16 +99,16 @@
                 android:textStyle="bold"
                 android:text="@string/dietary_prefs_group_restrictions"/>
 
+            <!-- Grid container (vertical stack of rows; rows are added programmatically) -->
             <LinearLayout
                 android:id="@+id/grid_restrict"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginTop="@dimen/tv_space_l"
-                android:gravity="start">
-            </LinearLayout>
+                android:gravity="start" />
 
-            <!-- Modal open button (map) to align with design's overlay interaction -->
+            <!-- Modal open button (map) to align with design's overlay interaction) -->
             <Button
                 android:id="@+id/btn_open_modal"
                 style="@style/TvGoldPrimaryButton"

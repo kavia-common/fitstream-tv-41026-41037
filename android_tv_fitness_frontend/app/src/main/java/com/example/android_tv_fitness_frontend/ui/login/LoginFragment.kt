@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import com.example.android_tv_fitness_frontend.R
@@ -19,7 +18,7 @@ import com.example.android_tv_fitness_frontend.nav.Navigation
 
 /**
  * PUBLIC_INTERFACE
- * LoginFragment implements a TV-friendly login UI following the Polytracon design notes.
+ * LoginFragment implements a TV-friendly login UI following the Polytracon/Titan style guide.
  * D-pad focus order: Email -> Password -> Sign In -> Register -> Forgot password.
  */
 class LoginFragment : Fragment() {
@@ -59,6 +58,9 @@ class LoginFragment : Fragment() {
             v.isFocusableInTouchMode = true
             applyFocusOutline(v)
         }
+
+        // Set initial focus to the email field per design
+        emailField.requestFocus()
 
         emailField.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         passwordField.inputType =
@@ -103,7 +105,7 @@ class LoginFragment : Fragment() {
         // Adjust top margin of the logo stack for 80dp from safe top as per notes
         val header = root.findViewById<View>(R.id.login_header)
         header.updateLayoutParams<MarginLayoutParams> {
-            topMargin = resources.getDimensionPixelSize(R.dimen.tv_space_6xl) // 64dp baseline, close to 80
+            topMargin = resources.getDimensionPixelSize(R.dimen.tv_space_6xl) // ~64dp baseline; near 80dp target
         }
 
         return root
@@ -115,23 +117,18 @@ class LoginFragment : Fragment() {
     }
 
     private fun applyFocusOutline(view: View) {
-        val ring = ContextCompat.getDrawable(requireContext(), R.drawable.tv_focus_ring)
-        
+        val ring = ContextCompat.getDrawable(requireContext(), R.drawable.tv_focus_ring_gold)
+
         view.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 v.scaleX = 1.03f
                 v.scaleY = 1.03f
-                v.background = ring
-                v.setPadding(
-                    resources.getDimensionPixelSize(R.dimen.tv_pad_l),
-                    resources.getDimensionPixelSize(R.dimen.tv_pad_m),
-                    resources.getDimensionPixelSize(R.dimen.tv_pad_l),
-                    resources.getDimensionPixelSize(R.dimen.tv_pad_m)
-                )
+                // Use foreground so backgrounds (inputs/buttons) remain visible
+                v.foreground = ring
             } else {
                 v.scaleX = 1.0f
                 v.scaleY = 1.0f
-                v.background = null
+                v.foreground = null
             }
         }
     }
