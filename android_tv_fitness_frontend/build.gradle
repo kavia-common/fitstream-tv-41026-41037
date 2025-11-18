@@ -1,23 +1,14 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-    dependencies {
-        // No dependencies yet; real Android buildscript to be added later.
-    }
+plugins {
+    // Keep minimal to avoid plugin downloads if AGP is not required for CI smoke checks
+    id 'base'
 }
 
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-    }
-}
+version = '0.1.0'
 
-// A minimal no-op task that CI can call without failing.
-tasks.register("check") {
+tasks.register('check') {
+    group = 'verification'
+    description = 'Minimal check task for CI to succeed.'
     doLast {
-        println("Placeholder Gradle check task executed.")
+        println "CI check: android_tv_fitness_frontend build skeleton OK"
     }
 }

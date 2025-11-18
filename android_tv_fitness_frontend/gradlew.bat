@@ -1,6 +1,35 @@
 @ECHO OFF
-REM Temporary stub gradle wrapper to unblock CI until Android project is initialized.
-REM This script intentionally no-ops and exits 0 so that CI does not fail due to missing Gradle wrapper.
-REM Replace this file with the real Gradle wrapper when the Android project is added.
-ECHO [android_tv_fitness_frontend] Gradle wrapper is not initialized yet. Skipping Gradle tasks.
-EXIT /B 0
+REM Gradle startup script for Windows
+
+SET DIR=%~dp0
+SET APP_HOME=%DIR%
+
+SET WRAPPER_JAR=%APP_HOME%gradle\wrapper\gradle-wrapper.jar
+
+IF EXIST "%WRAPPER_JAR%" (
+    REM Use Gradle wrapper jar
+) ELSE (
+    ECHO Gradle wrapper JAR not found at %WRAPPER_JAR%
+    ECHO Attempting to run system gradle if available...
+    WHERE gradle >NUL 2>&1
+    IF %ERRORLEVEL%==0 (
+        gradle %*
+        EXIT /B %ERRORLEVEL%
+    ) ELSE (
+        ECHO Error: Neither gradle wrapper JAR nor system gradle found.
+        ECHO Please add gradle/wrapper files or install gradle.
+        EXIT /B 127
+    )
+)
+
+REM Use JAVA_HOME if set
+IF DEFINED JAVA_HOME (
+  SET "JAVACMD=%JAVA_HOME%\bin\java.exe"
+) ELSE (
+  SET "JAVACMD=java.exe"
+)
+
+SET WRAPPER_MAIN_CLASS=org.gradle.wrapper.GradleWrapperMain
+
+"%JAVACMD%" -classpath "%WRAPPER_JAR%" %WRAPPER_MAIN_CLASS% %*
+EXIT /B %ERRORLEVEL%

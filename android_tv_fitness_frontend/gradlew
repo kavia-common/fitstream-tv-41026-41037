@@ -1,6 +1,32 @@
-#!/usr/bin/env bash
-# Temporary stub gradle wrapper to unblock CI until Android project is initialized.
-# This script intentionally no-ops and exits 0 so that CI does not fail due to missing Gradle wrapper.
-# Replace this file with the real Gradle wrapper when the Android project is added.
-echo "[android_tv_fitness_frontend] Gradle wrapper is not initialized yet. Skipping Gradle tasks."
-exit 0
+#!/usr/bin/env sh
+# Gradle startup script for UN*X
+# Minimal wrapper to delegate to gradle wrapper JAR. This script is added to allow CI to run ./gradlew.
+# For full features, include gradle/wrapper/gradle-wrapper.jar and gradle-wrapper.properties.
+
+APP_HOME=$(cd "$(dirname "$0")"; pwd)
+
+# Look for Java
+if [ -n "$JAVA_HOME" ] ; then
+    JAVACMD="$JAVA_HOME/bin/java"
+else
+    JAVACMD="java"
+fi
+
+# Default to gradle-wrapper JAR path
+WRAPPER_JAR="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
+WRAPPER_MAIN_CLASS="org.gradle.wrapper.GradleWrapperMain"
+
+if [ ! -f "$WRAPPER_JAR" ]; then
+  echo "Gradle wrapper JAR not found at $WRAPPER_JAR"
+  echo "Attempting to run system gradle if available..."
+  if command -v gradle >/dev/null 2>&1; then
+    exec gradle "$@"
+  else
+    echo "Error: Neither gradle wrapper JAR nor system gradle found."
+    echo "Please add gradle/wrapper/gradle-wrapper.jar and properties, or install gradle."
+    exit 127
+  fi
+fi
+
+# Build classpath and execute
+exec "$JAVACMD" -classpath "$WRAPPER_JAR" $WRAPPER_MAIN_CLASS "$@"
