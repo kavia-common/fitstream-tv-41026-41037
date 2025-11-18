@@ -22,7 +22,9 @@ if [ ! -x "$WRAPPER" ]; then
       wget -q "$WRAPPER_URL" -O "$JAR"
     fi
   fi
+  cd "$SCRIPT_DIR"
   exec sh "$WRAPPER" "$@"
 else
+  cd "$SCRIPT_DIR"
   exec "$WRAPPER" "$@"
 fi
